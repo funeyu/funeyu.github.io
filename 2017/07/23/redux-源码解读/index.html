@@ -15,12 +15,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/23/redux-源码解读/index.html">
 <meta property="og:site_name" content="funer&#39;s blog">
 <meta property="og:description" content="redux的基本用法：action：一是含有type参数的js对象，一般由store.dispatch(action)调用，该对象是描述store要变化的一些数据来源，例如：1234567function setVar(key, value) &amp;#123;  return &amp;#123;    type: &apos;SET_VAR&apos;,    key,    value  &amp;#125;&amp;#125; disp">
-<meta property="og:image" content="http://yoursite.com/img/posts/redux.png">
-<meta property="og:updated_time" content="2017-07-22T17:33:56.000Z">
+<meta property="og:image" content="http://yoursite.com/img/posts/redux.jpg">
+<meta property="og:updated_time" content="2017-07-22T17:35:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux 源码解读">
 <meta name="twitter:description" content="redux的基本用法：action：一是含有type参数的js对象，一般由store.dispatch(action)调用，该对象是描述store要变化的一些数据来源，例如：1234567function setVar(key, value) &amp;#123;  return &amp;#123;    type: &apos;SET_VAR&apos;,    key,    value  &amp;#125;&amp;#125; disp">
-<meta name="twitter:image" content="http://yoursite.com/img/posts/redux.png">
+<meta name="twitter:image" content="http://yoursite.com/img/posts/redux.jpg">
   
     <link rel="alternative" href="/atom.xml" title="funer&#39;s blog" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/posts/redux.png" alt=""></p>
+        <p><img src="/img/posts/redux.jpg" alt=""></p>
 <h2 id="redux的基本用法："><a href="#redux的基本用法：" class="headerlink" title="redux的基本用法："></a>redux的基本用法：</h2><p>action：一是含有type参数的js对象，一般由<code>store.dispatch(action)</code>调用，该对象是描述<code>store</code>要变化的一些数据来源，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setVar</span>(<span class="params">key, value</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'SET_VAR'</span>,</div><div class="line">    key,</div><div class="line">    value</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>dispatch</code>调用的方式为<code>store.dispatch(setVar(&#39;hello&#39;, &#39;java&#39;))</code><br><a id="more"></a><br>reducer: 这是store真正改变的函数，返回一个新的state对象,可以用一些<code>assign(), concat(), splice()</code>函数，或者用immutableJS方式生成新的对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setVar</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'SET_VAR'</span>:</div><div class="line">      state[action.key] = action.value</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>当然不同的reducer可以通过<code>combineReducers()</code>去合并多个散列的<code>reducers</code></p>
@@ -442,19 +442,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">koa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">es6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">koa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,6 +478,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">span</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技巧</a>
               </li>
              
@@ -486,7 +490,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">span</a>
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,18 +514,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安装</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
               </li>
              
@@ -534,6 +526,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安装</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mongo</a>
               </li>
              
@@ -542,19 +542,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +563,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,23 +586,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">deep learning</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分类</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,6 +607,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗歌</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分类</a>
               </li>
             
             <div class="clearfix"></div>
