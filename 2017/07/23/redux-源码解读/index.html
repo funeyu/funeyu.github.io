@@ -16,7 +16,8 @@
 <meta property="og:site_name" content="funer&#39;s blog">
 <meta property="og:description" content="redux的基本用法：action：一是含有type参数的js对象，一般由store.dispatch(action)调用，该对象是描述store要变化的一些数据来源，例如：1234567function setVar(key, value) &amp;#123;  return &amp;#123;    type: &apos;SET_VAR&apos;,    key,    value  &amp;#125;&amp;#125; disp">
 <meta property="og:image" content="http://yoursite.com/img/posts/redux.jpg">
-<meta property="og:updated_time" content="2017-07-22T17:35:53.000Z">
+<meta property="og:image" content="http://yoursite.com/img/posts/redux_source_src.png">
+<meta property="og:updated_time" content="2017-07-23T05:57:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux 源码解读">
 <meta name="twitter:description" content="redux的基本用法：action：一是含有type参数的js对象，一般由store.dispatch(action)调用，该对象是描述store要变化的一些数据来源，例如：1234567function setVar(key, value) &amp;#123;  return &amp;#123;    type: &apos;SET_VAR&apos;,    key,    value  &amp;#125;&amp;#125; disp">
@@ -181,13 +182,21 @@
         <p><img src="/img/posts/redux.jpg" alt=""></p>
 <h2 id="redux的基本用法："><a href="#redux的基本用法：" class="headerlink" title="redux的基本用法："></a>redux的基本用法：</h2><p>action：一是含有type参数的js对象，一般由<code>store.dispatch(action)</code>调用，该对象是描述<code>store</code>要变化的一些数据来源，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setVar</span>(<span class="params">key, value</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'SET_VAR'</span>,</div><div class="line">    key,</div><div class="line">    value</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><code>dispatch</code>调用的方式为<code>store.dispatch(setVar(&#39;hello&#39;, &#39;java&#39;))</code><br><a id="more"></a><br>reducer: 这是store真正改变的函数，返回一个新的state对象,可以用一些<code>assign(), concat(), splice()</code>函数，或者用immutableJS方式生成新的对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setVar</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'SET_VAR'</span>:</div><div class="line">      state[action.key] = action.value</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>当然不同的reducer可以通过<code>combineReducers()</code>去合并多个散列的<code>reducers</code></p>
+<p>当然不同的reducer可以通过<code>combineReducers()</code>去合并多个散列的<code>reducers</code>,<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"><span class="keyword">import</span> todos <span class="keyword">from</span> <span class="string">'./todos'</span></div><div class="line"><span class="keyword">import</span> counter <span class="keyword">from</span> <span class="string">'./counter'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> combineReducers(&#123;</div><div class="line">  todos,</div><div class="line">  counter</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>store: 通过<code>createStore(reducers)</code>去生成单一的appData集；其有公共的方法：</p>
 <ul>
 <li><code>getState()</code>获取state值</li>
 <li><code>dispatch()</code>改变state的值</li>
 <li><code>subscribe(listener)</code>注册监听函数</li>
 </ul>
+<p>applyMiddleware(…middlewares)：<code>middleware(arguments)</code>有两个参数，<code>Store</code>‘<code>dispatch</code>和<code>getState</code><br>用法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">logger</span>(<span class="params">&#123;getState&#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="params">next</span> =&gt;</span> action =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'will dispatch'</span>, action)</div><div class="line"></div><div class="line">    <span class="comment">// Call the next dispatch method in the middleware chain</span></div><div class="line">    <span class="keyword">let</span> returnValue = next(action)</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'state after dispatch'</span>, getState())</div><div class="line"></div><div class="line">    <span class="comment">// This will likely be the action itself, unless</span></div><div class="line">    <span class="comment">// a middleware further in chain changed it.</span></div><div class="line">    <span class="keyword">return</span> returnValue</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> store = createStore(</div><div class="line">  todos,</div><div class="line">  [<span class="string">'Use Redux'</span>],</div><div class="line">  applyMiddleware(logger)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>bindActionCreators: 将返回为<code>action</code>的函数转变成<code>key</code>为该函数名，<code>value</code>为将将<code>dispatch</code>包含在<code>action</code>的函数<br>参数：<code>actionCreators</code>和<code>dispatch</code>,返回一个和<code>action</code>相似的对象，只是每个<code>action</code>对象都会直接调用<code>store.dispatch(action)</code></p>
+<h2 id="redux-的源码结构"><a href="#redux-的源码结构" class="headerlink" title="redux 的源码结构"></a>redux 的源码结构</h2><p><img src="/img/posts/redux_source_src.png" alt=""></p>
+<h3 id="createStore的源码"><a href="#createStore的源码" class="headerlink" title="createStore的源码"></a>createStore的源码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">reducer, preloadedState, enhancer</span>) </span>&#123;</div><div class="line">  <span class="comment">// 这里是applyMiddleware用到的enhancer加强版的createStore，后面会介绍到</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> preloadedState === <span class="string">'function'</span> &amp;&amp; <span class="keyword">typeof</span> enhancer === <span class="string">'undefined'</span>) &#123;</div><div class="line">    enhancer = preloadedState</div><div class="line">    preloadedState = <span class="literal">undefined</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> enhancer !== <span class="string">'undefined'</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> enhancer !== <span class="string">'function'</span>) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Expected the enhancer to be a function.'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> enhancer(createStore)(reducer, preloadedState)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> reducer !== <span class="string">'function'</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Expected the reducer to be a function.'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">let</span> currentReducer = reducer       <span class="comment">//经过combineReducers combine后的一个reducer</span></div><div class="line">  <span class="keyword">let</span> currentState = preloadedState  <span class="comment">//每个store会持有一个state,即store的数据集，store.getState()就返回该对象</span></div><div class="line">  <span class="keyword">let</span> currentListeners = []          <span class="comment">//每次dispatch 都会调用的监听</span></div><div class="line">  <span class="keyword">let</span> nextListeners = currentListeners</div><div class="line">  <span class="keyword">let</span> isDispatching = <span class="literal">false</span>          <span class="comment">//是否在store.dispatch操作的标志位</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">ensureCanMutateNextListeners</span>(<span class="params"></span>) </span>&#123; <span class="comment">//将本次的currentListeners作为一次复制给nextListeners，作为nextListeners的快照</span></div><div class="line">    <span class="keyword">if</span> (nextListeners === currentListeners) &#123;</div><div class="line">      nextListeners = currentListeners.slice()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">/*</span></div><div class="line">  这个函数是添加订阅的入口，每次添加listener都是在nextListeners上操作，而不是直接在currentListeners上操作，而每次dispatch都是在currentListeners上操作</div><div class="line">  store.subscribe(listener1)</div><div class="line">  store.subscribe(listener2)</div><div class="line">  store.dispatch(action) // 该action可能是异步的过程,即使是异步的过程，也只是监听上面的(listener1, listener2), 因为每次store.dispatch都是传入的(listener1, listener2)的快照</div><div class="line"></div><div class="line">  store.subscribe(listener3)</div><div class="line"></div><div class="line">  store.dispatch(action1) //该action1就可以调用(listener1, listener2, listener3)</div><div class="line"></div><div class="line">  注意点：每次subcribe后都形成一个闭包,要注意设置变量=null</div><div class="line">  */</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">subscribe</span>(<span class="params">listener</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> isSubscribed = <span class="literal">true</span></div><div class="line"></div><div class="line">    ensureCanMutateNextListeners()</div><div class="line">    nextListeners.push(listener)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">unsubscribe</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (!isSubscribed) &#123;</div><div class="line">        <span class="keyword">return</span></div><div class="line">      &#125;</div><div class="line"></div><div class="line">      isSubscribed = <span class="literal">false</span></div><div class="line"></div><div class="line">      ensureCanMutateNextListeners()</div><div class="line">      <span class="keyword">const</span> index = nextListeners.indexOf(listener)</div><div class="line">      nextListeners.splice(index, <span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">dispatch</span>(<span class="params">action</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      isDispatching = <span class="literal">true</span></div><div class="line">      currentState = currentReducer(currentState, action)</div><div class="line">    &#125; <span class="keyword">finally</span> &#123;</div><div class="line">      isDispatching = <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> listeners = currentListeners = nextListeners</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; listeners.length; i++) &#123;</div><div class="line">      <span class="keyword">const</span> listener = listeners[i]</div><div class="line">      listener()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> action</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="combineReducers的源码："><a href="#combineReducers的源码：" class="headerlink" title="combineReducers的源码："></a>combineReducers的源码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"></div><div class="line">将多个reducer拼成一个reducer返回，在返回reducer前做的一些事情：</div><div class="line">  将reducers  循环以reducer的函数名做为finalReducers的key，返回新state的函数作为finalReducers该key的value,复制一份形成闭包</div><div class="line">返回新的reducer函数combination:</div><div class="line">  有默认的总state对象，和一个新的state对象： nextState,遍历finalReducers，调用action函数，返回新的局部state都置于nextState中，以该reducer的函数名作为key，生成的局部state作为value存储，且判断每次生成的局部state和之前总state对象里的该key的局部state对比，若有变化就返回新的nextState</div><div class="line"></div><div class="line">然后每次调用dispatch(action)方法的时候，依次调用每个子reducer的方法，由于一般reducer方法都写成</div><div class="line">switch (action.type) &#123;</div><div class="line">  case 'ADD_TODO':</div><div class="line">    return state.concat([action.text])</div><div class="line">  default:</div><div class="line">    return state</div><div class="line">&#125;</div><div class="line"></div><div class="line">如果不是该action，就直接返回原state,只有真是要执行的action时，才去执行返回一个新的state,</div><div class="line"></div><div class="line">todo: 这里实际上又优化的空间，不要循环遍历，应该做成对象的存储方式（hash）,这样可以一次就能找到要执行的action并且声称相应的state，不知道作者为啥要去这种列表的方式，自己有可能想简单了？？？？？</div><div class="line">*/</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">combineReducers</span>(<span class="params">reducers</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> reducerKeys = <span class="built_in">Object</span>.keys(reducers)</div><div class="line">  <span class="keyword">const</span> finalReducers = &#123;&#125;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; reducerKeys.length; i++) &#123;</div><div class="line">    <span class="keyword">const</span> key = reducerKeys[i]</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> reducers[key] === <span class="string">'function'</span>) &#123;</div><div class="line">      finalReducers[key] = reducers[key]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">const</span> finalReducerKeys = <span class="built_in">Object</span>.keys(finalReducers)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">combination</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> hasChanged = <span class="literal">false</span></div><div class="line">    <span class="keyword">const</span> nextState = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; finalReducerKeys.length; i++) &#123;</div><div class="line">      <span class="keyword">const</span> key = finalReducerKeys[i]</div><div class="line">      <span class="keyword">const</span> reducer = finalReducers[key]</div><div class="line">      <span class="keyword">const</span> previousStateForKey = state[key]</div><div class="line">      <span class="keyword">const</span> nextStateForKey = reducer(previousStateForKey, action)</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> nextStateForKey === <span class="string">'undefined'</span>) &#123;</div><div class="line">        <span class="keyword">const</span> errorMessage = getUndefinedStateErrorMessage(key, action)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(errorMessage)</div><div class="line">      &#125;</div><div class="line">      nextState[key] = nextStateForKey</div><div class="line">      hasChanged = hasChanged || nextStateForKey !== previousStateForKey</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> hasChanged ? nextState : state</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最基本的源码就这些，写法还是挺精致的，回到文中一开始的那张图，结合一段代码来看</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> store = createStore(counter)</div><div class="line"><span class="keyword">const</span> rootEl = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> render = <span class="function"><span class="params">()</span> =&gt;</span> ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Counter</span></span></span></div><div class="line">    <span class="attr">value</span>=<span class="string">&#123;store.getState()&#125;</span></div><div class="line">    <span class="attr">onIncrement</span>=<span class="string">&#123;()</span> =&gt; store.dispatch(&#123; type: 'INCREMENT' &#125;)&#125;</div><div class="line">    onDecrement=&#123;() =&gt; store.dispatch(&#123; type: 'DECREMENT' &#125;)&#125;</div><div class="line">  /&gt;,</div><div class="line">  rootEl</div><div class="line">)</div><div class="line"></div><div class="line">render()</div><div class="line">store.subscribe(render)</div></pre></td></tr></table></figure>
+<p>该页面就是一个创建了<code>store</code>作为<code>state</code>的数据集,在每次用户交互的时候，通过<code>store.dispatch(action)</code>来改变store值，同时添加监听函数<code>store.subscribe(render)</code>即每次<code>dispatch</code>的时候都会调用该<code>render</code>;这样一来，形成了单一数据流，数据变化就引起界面的变化。</p>
 
       
 
@@ -442,14 +451,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">es6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">koa</a>
               </li>
              
@@ -458,11 +459,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">span</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,11 +483,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">span</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,18 +496,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">备忘录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,7 +511,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,6 +532,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">责任链</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">备忘</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,19 +555,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">备忘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">配置</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,7 +571,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">配置</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,15 +607,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗歌</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
               </li>
              
               <li class="article-tag-list-item">
