@@ -156,6 +156,144 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-面试题目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/面试题目/">面试题目</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/14/面试题目/" class="archive-article-date">
+  	<time datetime="2017-08-14T14:05:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>今天是我工作以来，第一次以面试官的角色去面试别人，面试对象为：前端工程师，然后自己弄了些题目，当做是自己回忆总结也好，现在把题目整理下：</p>
+</blockquote>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><h3 id="基础知识："><a href="#基础知识：" class="headerlink" title="基础知识："></a>基础知识：</h3><ol>
+<li><p><code>z-index：</code>的使用事项：可以参考<a href="http://funeyu.github.io/2016/04/28/z-index%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" target="_blank" rel="external">这边文章</a></p>
+</li>
+<li><p>float的影响,及怎么清除浮动，有哪些方法。</p>
+</li>
+<li><p>flex的使用示例</p>
+</li>
+<li><p>标准的盒子的大小及定位基准？？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.div &#123;</div><div class="line">  background: red;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  border: 20px solid #ccc;</div><div class="line">  padding: 10px;</div><div class="line">&#125;</div><div class="line">如果设置 border-sizing: border-box; 该红色区域大小？？?</div><div class="line">不设置border-sizing: border-box的时候，该红色区域大小???</div></pre></td></tr></table></figure>
+</li>
+<li><p>触发BFC条件：</p>
+<ul>
+<li>overflow：不为visible;</li>
+<li>position: absolute,fixed;</li>
+<li>float: 不为none</li>
+<li>display: inline-block table-cell;</li>
+</ul>
+<ul>
+<li>哪些用途：例如: 属于不同的BFC时可以阻止margin重叠</li>
+</ul>
+</li>
+</ol>
+<h3 id="布局实例："><a href="#布局实例：" class="headerlink" title="布局实例："></a>布局实例：</h3><ol>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"height: 400px;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"height"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">.height &#123;</div><div class="line">  display: inherit;</div><div class="line">  height: 200px;</div><div class="line">&#125;</div><div class="line">.height&#123;</div><div class="line">  display: inline-block;</div><div class="line">  height: 200px; // height: 100%;, auto</div><div class="line">&#125;</div><div class="line">.height &#123;</div><div class="line">  height: 200px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>实现一个 类似天猫头部的中间布局(只用margin: 0 auto; position: absolute)</p>
+</li>
+<li><p>rem的用法</p>
+</li>
+</ol>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ol>
+<li><p>const, let, var的使用注意项</p>
+<blockquote>
+<p>块级作用域、</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const a = &apos;java&apos;</div><div class="line">a = &apos;node&apos;？</div><div class="line"></div><div class="line">const a = [&apos;java&apos;];</div><div class="line"></div><div class="line">a.push(&apos;e&apos;)?</div><div class="line">// 数组的常用方法说几个，</div><div class="line">// 那些函数会改变数组本身</div><div class="line">// 答：pop, shift,concat,map, splice</div></pre></td></tr></table></figure>
+</li>
+<li><p>快速去重数组中的元素的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">5</span>];</div><div class="line"><span class="keyword">const</span> unique = [...new <span class="built_in">Set</span>(arr)]; <span class="comment">// [ 5, 1, 7 ]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>实现Promise 让你去实现.whole的方法，和all的效果有相同的效果怎么写：</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Promise</span>.whole = <span class="function"><span class="keyword">function</span>(<span class="params">promises</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> results = <span class="keyword">new</span> <span class="built_in">Array</span>(promises.length);</div><div class="line">  <span class="keyword">var</span> finished = <span class="number">0</span>;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    promises.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">promise, index</span>) </span>&#123;</div><div class="line">      promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        finished ++;</div><div class="line">        results[index] = data;</div><div class="line">        <span class="keyword">if</span>(finished ==promises.length)&#123;</div><div class="line">          resolve(results)&#125;</div><div class="line">        &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</div><div class="line">          reject(err)&#125;</div><div class="line">        )</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>nodejs模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// cache.js</span></div><div class="line"><span class="keyword">const</span> Cache = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'init here!!'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> cache = <span class="keyword">new</span> Cache();</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  cache</div><div class="line">&#125;</div><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">const</span> cache = <span class="built_in">require</span>(<span class="string">'./cache'</span>) <span class="comment">//会打印出 'init here!!'</span></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">const</span> cache = <span class="built_in">require</span>(<span class="string">'./cache'</span>) <span class="comment">// 会打印吗？</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>javascript 中<code>this</code>的问题：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.a = a;</div><div class="line">&#125;</div><div class="line">A.prototype.b = <span class="function"><span class="keyword">function</span> (<span class="params">arr</span>) </span>&#123; <span class="comment">// (A)</span></div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line">    <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123; <span class="comment">// (B)</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a + x; <span class="comment">// (C)</span></div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> t = <span class="string">'outer'</span></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line"> <span class="attr">t</span>: <span class="string">'java'</span>,</div><div class="line"> <span class="attr">m</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.t);</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">a.m();</div><div class="line"></div><div class="line"><span class="keyword">var</span> t = <span class="string">'outer'</span></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line"> <span class="attr">t</span>: <span class="string">'java'</span>,</div><div class="line"> <span class="attr">m</span>: <span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.t);</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">a.m();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="react知识"><a href="#react知识" class="headerlink" title="react知识"></a>react知识</h2><ol>
+<li><p>描述react生命周期函数</p>
+</li>
+<li><p>用过redux 吗，若使用过，大概讲下其实现原理</p>
+</li>
+<li><p>简述Koa 和 Express 的中间件的使用</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面的题目有些像背书一样，只要也是可以的；</p>
+<p>今天面试一个女生，算上实习有三年的前端工作经验，<code>Promise</code>没用过，<code>nodejs</code>也没使用过，我一直以为<code>nodejs</code>和<code>react</code>是一套必须的前端技能包，前端的<code>css</code>这块感觉也不是特别突出，感觉女生做技术这块还是有些弱势，虽然我不是大牛，但是我一直努力成长中，喜欢追根究底，有好奇心，愿da</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/14/面试题目/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Class-clazz-Class-clasz两者的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -557,90 +695,6 @@
 
 
   
-    <article id="post-反向传播算法-译" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/15/反向传播算法-译/">反向传播算法--译</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/15/反向传播算法-译/" class="archive-article-date">
-  	<time datetime="2017-07-15T02:58:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><a href="http://colah.github.io/posts/2015-08-Backprop/" target="_blank" rel="external">原文</a></p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>反向传播算法是一种可使深度学习模型计算上可行的重要算法。对现代的神经网络来说，该算法实现的梯度下降训练要比那些幼稚实现快上百万倍，就像是一个要用一周训练而另一个要用200，000年</p>
-<p>除了在深度学习的应用外，在其他方面像天气预告到分析数值稳定性上都是强大的计算工具，只是说换了个名字而已。实际上该算法就在不同的领域被多次重复发现过。撇开那些不同应用，该算法的通用的名称为“反向模式求导”。该算法最主要的功能是能够快速计算求导，并且是你不光在深度学习还有其他数值计算领域都非常重要的技能包</p>
-        
-          <a class="article-more-a" href="/2017/07/15/反向传播算法-译/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">deep learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/15/反向传播算法-译/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -759,6 +813,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
               </li>
              
@@ -775,7 +833,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -787,19 +853,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">es6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -823,18 +877,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nosql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">玩具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">哈希索引</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">技巧</a>
               </li>
              
@@ -848,6 +890,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nosql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">玩具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">哈希索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -879,14 +933,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mongo</a>
               </li>
              
@@ -899,19 +945,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">配置</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">z-index</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apply</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">call</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -927,11 +969,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apply</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">call</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗歌</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -943,7 +1001,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
