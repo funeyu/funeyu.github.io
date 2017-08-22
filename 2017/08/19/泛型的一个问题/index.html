@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2016/1 | funer&#39;s blog</title>
+  <title>泛型的一个问题 | funer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="做不喜欢的事情即使成功也不快乐，但是做自己喜欢的事情，即使不成功也是快乐的">
-<meta property="og:type" content="website">
-<meta property="og:title" content="funer&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2016/01/index.html">
+  <meta name="description" content="写在之前 在写自己的一个项目的时候，遇到一个问题，如下代码：  12345public static&amp;lt;T extends Model&amp;gt; LazyModelList&amp;lt;T&amp;gt;where(String query) &amp;#123;   // 这里想获取泛型的T的Class，试了很多方法都不行   // 不能用T.getClass的方法， T可以直接调用Model上的static方法">
+<meta name="keywords" content="java,泛型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="泛型的一个问题">
+<meta property="og:url" content="http://yoursite.com/2017/08/19/泛型的一个问题/index.html">
 <meta property="og:site_name" content="funer&#39;s blog">
-<meta property="og:description" content="做不喜欢的事情即使成功也不快乐，但是做自己喜欢的事情，即使不成功也是快乐的">
+<meta property="og:description" content="写在之前 在写自己的一个项目的时候，遇到一个问题，如下代码：  12345public static&amp;lt;T extends Model&amp;gt; LazyModelList&amp;lt;T&amp;gt;where(String query) &amp;#123;   // 这里想获取泛型的T的Class，试了很多方法都不行   // 不能用T.getClass的方法， T可以直接调用Model上的static方法">
+<meta property="og:image" content="http://yoursite.com/img/posts/JavaGenerics.jpg">
+<meta property="og:updated_time" content="2017-08-22T15:18:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="funer&#39;s blog">
-<meta name="twitter:description" content="做不喜欢的事情即使成功也不快乐，但是做自己喜欢的事情，即使不成功也是快乐的">
+<meta name="twitter:title" content="泛型的一个问题">
+<meta name="twitter:description" content="写在之前 在写自己的一个项目的时候，遇到一个问题，如下代码：  12345public static&amp;lt;T extends Model&amp;gt; LazyModelList&amp;lt;T&amp;gt;where(String query) &amp;#123;   // 这里想获取泛型的T的Class，试了很多方法都不行   // 不能用T.getClass的方法， T可以直接调用Model上的static方法">
+<meta name="twitter:image" content="http://yoursite.com/img/posts/JavaGenerics.jpg">
   
     <link rel="alternative" href="/atom.xml" title="funer&#39;s blog" type="application/atom+xml">
   
@@ -154,122 +158,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-泛型的一个问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/06/200行javascript代码实现MVC前端框架-三/" class="archive-article-date">
-  	<time datetime="2016-01-06T06:38:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/06/200行javascript代码实现MVC前端框架-三/">200行javascript代码实现MVC前端框架(三)</a>
+    <h1 class="article-title" itemprop="name">
+      泛型的一个问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/19/泛型的一个问题/" class="archive-article-date">
+  	<time datetime="2017-08-19T01:14:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/posts/JavaGenerics.jpg" alt=""></p>
+<h2 id="写在之前"><a href="#写在之前" class="headerlink" title="写在之前"></a>写在之前</h2><blockquote>
+<p>在写自己的一个项目的时候，遇到一个问题，如下代码：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span>&lt;T extends Model&gt; LazyModelList&lt;T&gt;where(String query) &#123;</div><div class="line">   <span class="comment">// 这里想获取泛型的T的Class，试了很多方法都不行</span></div><div class="line">   <span class="comment">// 不能用T.getClass的方法， T可以直接调用Model上的static方法</span></div><div class="line">   <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>  一开始想在static方法中获取子类方法的className,要实现的代码类似于：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">MyInheritingClass</span> <span class="keyword">extends</span> <span class="title">MySuperClass</span></span>&#123;</div><div class="line">    <span class="comment">//some interesting code here...</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [ ] args)</span></span>&#123;</div><div class="line">        System.out.println(MyInheritingClass.getClassName());</div><div class="line">        <span class="comment">//this should output "MyInheritingClass" and NOT "MySuperClass"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  这种方法是非法的，因为static方法不是虚函数，可以实现多态性，上面的代码是实现不了的<br>  <a id="more"></a></p>
+<p>  这里我其实对java的泛型的认识不是很清楚，本篇就针对此好好总结一下吧；</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><blockquote>
+<p>泛型一般用来构建容器类，保证容器类类型的安全，相当于模板,是一参数化类型。</p>
+</blockquote>
+<h2 id="泛型的使用"><a href="#泛型的使用" class="headerlink" title="泛型的使用"></a>泛型的使用</h2><blockquote>
+<p>一般有三类，泛型类，泛型接口，泛型方法</p>
+</blockquote>
+<h4 id="泛型类："><a href="#泛型类：" class="headerlink" title="泛型类："></a>泛型类：</h4>  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line">      <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> &#123;</div><div class="line">        <span class="keyword">transient</span> Object[] elementData;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">          ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></div><div class="line">          elementData[size++] = e;</div><div class="line">          <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line"><span class="comment">// 调用的方式：</span></div><div class="line">ArrayList&lt;String&gt; arrayList = <span class="keyword">new</span> ArrayList();</div><div class="line"><span class="comment">// 这里arrayList.add只能是添加String类型的变量</span></div><div class="line">arrayList.add(<span class="string">"hello java!!"</span>)</div></pre></td></tr></table></figure>
+<p>  实例化泛型类的时候，只要指定相应泛型为具体的类，即可，如上，<code>ArrayList&lt;E&gt;</code>就将<code>E</code>变成<code>String</code>类，及为<code>ArrayList&lt;String&gt;</code>；</p>
+<h4 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h4>  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  泛型接口和泛型类很类似</p>
+<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4>  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 注意static函数下要加&lt;E&gt;的说明</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function">ArrayList&lt;E&gt; <span class="title">addT</span><span class="params">(ArrayList&lt;E&gt; one, ArrayList&lt;E&gt; another)</span> </span>&#123;</div><div class="line">       one.addAll(another);</div><div class="line">       <span class="keyword">return</span> one;</div><div class="line">   &#125;;</div><div class="line"></div><div class="line"><span class="comment">// 调用的方式为：</span></div><div class="line">ArrayList&lt;String&gt; ss = <span class="keyword">new</span> ArrayList();</div><div class="line">ss.add(<span class="string">"java"</span>);</div><div class="line"></div><div class="line">ArrayList&lt;String&gt;bb = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">bb.add(<span class="string">"hello"</span>);</div><div class="line"></div><div class="line">ArrayList&lt;String&gt; rs = ClassA.addT(ss, bb);</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻译</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">泛型</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/19/泛型的一个问题/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/02/200行javascript代码实现MVC前端框架（二）/" class="archive-article-date">
-  	<time datetime="2016-01-02T14:18:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/14/面试题目/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试题目</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/02/200行javascript代码实现MVC前端框架（二）/">200行javascript代码实现MVC前端框架（二）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻译</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -292,8 +339,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
