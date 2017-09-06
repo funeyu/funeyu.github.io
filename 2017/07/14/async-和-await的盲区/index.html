@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/14/async-和-await的盲区/index.html">
 <meta property="og:site_name" content="funer&#39;s blog">
 <meta property="og:description" content="先看一段代码，该代码自己天真以为a就是promise后的结果，其实不是这样子的  1234567891011121314var asy = async function() &amp;#123;  let a = await new Promise(function(resolve, reject)&amp;#123;    setTimeout(function()&amp;#123;      resolve(&apos;h">
-<meta property="og:updated_time" content="2017-07-15T14:07:44.000Z">
+<meta property="og:updated_time" content="2017-09-06T15:00:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="async 和 await的盲区">
 <meta name="twitter:description" content="先看一段代码，该代码自己天真以为a就是promise后的结果，其实不是这样子的  1234567891011121314var asy = async function() &amp;#123;  let a = await new Promise(function(resolve, reject)&amp;#123;    setTimeout(function()&amp;#123;      resolve(&apos;h">
@@ -189,6 +189,7 @@
 <p>第一个async函数,等待一个rejected状态的promise，并且被捕捉到，成功返回saved的状态的一个新的promise（await 会重新返回一个promise）；</p>
 <p>第二个直接返回一个rejected的Promise，直接返回就是一个未被捕捉异常的promise</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">rejectionWithReturnAwait()</div><div class="line"><span class="built_in">Promise</span> &#123;[[PromiseStatus]]: <span class="string">"resolved"</span>, [[PromiseValue]]: <span class="string">"Saved!"</span>&#125;</div><div class="line">rejectionWithReturn()</div><div class="line"><span class="built_in">Promise</span> &#123;[[PromiseStatus]]: <span class="string">"rejected"</span>, [[PromiseValue]]: <span class="built_in">Error</span></div><div class="line">    at rejectionWithReturn (&lt;anonymous&gt;:11:27)</div><div class="line">    at &lt;anonymous&gt;:1:1&#125;</div></pre></td></tr></table></figure>
+<p>在下面这种抛出错误的情况下，要在外层以<code>throwError().catch()</code>的方式去捕捉错误；不能以<code>try{}catch(err)</code>的方式去捕捉异常。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">throwError</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'happens with a error!'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -448,7 +449,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">koa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,6 +477,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">span</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集锦</a>
               </li>
              
@@ -472,23 +489,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">span</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">koa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,19 +537,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">责任链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安装</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">责任链</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,7 +577,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,6 +621,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">deep learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
@@ -612,35 +637,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">deep learning</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
             
             <div class="clearfix"></div>
