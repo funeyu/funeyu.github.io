@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>git备忘录 | funer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分支 将本地分支推送到远端分支： 1git push &amp;lt;remote name&amp;gt; &amp;lt;branch name&amp;gt;  基于某个分支创建分支：Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支 1git checkout -b &amp;lt;new branch name&amp;gt; &amp;lt;branch name&amp;gt;">
+  <meta name="description" content="分支1.将本地分支推送到远端分支：1git push &amp;lt;remote name&amp;gt; &amp;lt;branch name&amp;gt; 2.基于某个分支创建分支：Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支1git checkout -b &amp;lt;new branch name&amp;gt; &amp;lt;branch name&amp;gt;">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git备忘录">
 <meta property="og:url" content="http://yoursite.com/2016/03/16/git/index.html">
 <meta property="og:site_name" content="funer&#39;s blog">
-<meta property="og:description" content="分支 将本地分支推送到远端分支： 1git push &amp;lt;remote name&amp;gt; &amp;lt;branch name&amp;gt;  基于某个分支创建分支：Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支 1git checkout -b &amp;lt;new branch name&amp;gt; &amp;lt;branch name&amp;gt;">
-<meta property="og:updated_time" content="2017-09-10T13:27:46.000Z">
+<meta property="og:description" content="分支1.将本地分支推送到远端分支：1git push &amp;lt;remote name&amp;gt; &amp;lt;branch name&amp;gt; 2.基于某个分支创建分支：Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支1git checkout -b &amp;lt;new branch name&amp;gt; &amp;lt;branch name&amp;gt;">
+<meta property="og:updated_time" content="2017-09-10T13:29:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git备忘录">
-<meta name="twitter:description" content="分支 将本地分支推送到远端分支： 1git push &amp;lt;remote name&amp;gt; &amp;lt;branch name&amp;gt;  基于某个分支创建分支：Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支 1git checkout -b &amp;lt;new branch name&amp;gt; &amp;lt;branch name&amp;gt;">
+<meta name="twitter:description" content="分支1.将本地分支推送到远端分支：1git push &amp;lt;remote name&amp;gt; &amp;lt;branch name&amp;gt; 2.基于某个分支创建分支：Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支1git checkout -b &amp;lt;new branch name&amp;gt; &amp;lt;branch name&amp;gt;">
   
     <link rel="alternative" href="/atom.xml" title="funer&#39;s blog" type="application/atom+xml">
   
@@ -176,26 +176,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ol>
-<li><p>将本地分支推送到远端分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push &lt;remote name&gt; &lt;branch name&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>基于某个分支创建分支：<br><em>Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b &lt;new branch name&gt; &lt;branch name&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
+        <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>1.将本地分支推送到远端分支：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push &lt;remote name&gt; &lt;branch name&gt;</div></pre></td></tr></table></figure></p>
+<p>2.基于某个分支创建分支：<br><em>Note: 这里基于某个分支是指本地分支，是将本地分支commit后的内容复制到新的分支上；不是基于远端的分支</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b &lt;new branch name&gt; &lt;branch name&gt;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<ol>
-<li><p>删除本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d &lt;name&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>删除远端分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push &lt;remote name&gt; :&lt;branch name&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>拉取远端分支到本地分支：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout origin/分支名 -b 本地分支名</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>3.删除本地分支：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d &lt;name&gt;</div></pre></td></tr></table></figure></p>
+<p>4.删除远端分支：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push &lt;remote name&gt; :&lt;branch name&gt;</div></pre></td></tr></table></figure></p>
+<p>5.拉取远端分支到本地分支：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout origin/分支名 -b 本地分支名</div></pre></td></tr></table></figure></p>
 <h2 id="删除commit"><a href="#删除commit" class="headerlink" title="删除commit"></a>删除commit</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard HEAD~1</div></pre></td></tr></table></figure>
 <p>当有3个commit:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">commit 3</div><div class="line">commit 2</div><div class="line">commit 1</div></pre></td></tr></table></figure></p>
 <p>该方法会使HEAD is now at commit 2, 同时本地仓库的commit 3修改的代码也一起消失了；<br>然后再使用 git push –force,这样可以使得最后一次的提交彻底消失；</p>
@@ -473,19 +459,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">es6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,19 +479,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">集锦</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">误区</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异常</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,7 +503,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异常</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,15 +523,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">责任链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,7 +551,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mongo</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,7 +559,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color1">mongo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,6 +575,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -601,11 +591,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,14 +608,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">call</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,19 +627,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
             
             <div class="clearfix"></div>
