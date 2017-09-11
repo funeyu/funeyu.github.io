@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>js装饰器的使用 | funer&#39;s blog</title>
+  <title>shell 学习 | funer&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="做不喜欢的事情即使成功也不快乐，但是做自己喜欢的事情，即使不成功也是快乐的">
-<meta name="keywords" content="javascript,装饰器">
+  <meta name="description" content="权限1chmod +x file.sh 使得file.sh可执行 当然也可以将该可执行的权限收回：1chmod -x file.sh sudo -iu test切换到普通用户； 传参shell 传参数，以$1, $2, $3的形式输出所有的参数 $0为执行文件名 1234// tesh.shecho &quot;shell 传参：&quot;;echo &quot;第一个参数为：$1&quot;;echo &quot;第二个参数为：$2&quot;; 执行">
+<meta name="keywords" content="shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js装饰器的使用">
-<meta property="og:url" content="http://yoursite.com/2017/08/28/js装饰器的使用/index.html">
+<meta property="og:title" content="shell 学习">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/shell-学习/index.html">
 <meta property="og:site_name" content="funer&#39;s blog">
-<meta property="og:description" content="做不喜欢的事情即使成功也不快乐，但是做自己喜欢的事情，即使不成功也是快乐的">
-<meta property="og:updated_time" content="2017-08-29T14:18:55.000Z">
+<meta property="og:description" content="权限1chmod +x file.sh 使得file.sh可执行 当然也可以将该可执行的权限收回：1chmod -x file.sh sudo -iu test切换到普通用户； 传参shell 传参数，以$1, $2, $3的形式输出所有的参数 $0为执行文件名 1234// tesh.shecho &quot;shell 传参：&quot;;echo &quot;第一个参数为：$1&quot;;echo &quot;第二个参数为：$2&quot;; 执行">
+<meta property="og:updated_time" content="2017-09-11T15:36:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js装饰器的使用">
-<meta name="twitter:description" content="做不喜欢的事情即使成功也不快乐，但是做自己喜欢的事情，即使不成功也是快乐的">
+<meta name="twitter:title" content="shell 学习">
+<meta name="twitter:description" content="权限1chmod +x file.sh 使得file.sh可执行 当然也可以将该可执行的权限收回：1chmod -x file.sh sudo -iu test切换到普通用户； 传参shell 传参数，以$1, $2, $3的形式输出所有的参数 $0为执行文件名 1234// tesh.shecho &quot;shell 传参：&quot;;echo &quot;第一个参数为：$1&quot;;echo &quot;第二个参数为：$2&quot;; 执行">
   
     <link rel="alternative" href="/atom.xml" title="funer&#39;s blog" type="application/atom+xml">
   
@@ -156,27 +156,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-js装饰器的使用" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-shell-学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      js装饰器的使用
+      shell 学习
     </h1>
   
 
         
-        <a href="/2017/08/28/js装饰器的使用/" class="archive-article-date">
-  	<time datetime="2017-08-28T15:27:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-28</time>
+        <a href="/2017/09/11/shell-学习/" class="archive-article-date">
+  	<time datetime="2017-09-11T14:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x file.sh</div></pre></td></tr></table></figure>
+<p>使得<code>file.sh</code>可执行</p>
+<p>当然也可以将该可执行的权限收回：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod -x file.sh</div></pre></td></tr></table></figure></p>
+<p><code>sudo -iu test</code>切换到普通用户；</p>
+<h2 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h2><p>shell 传参数，以<code>$1, $2, $3</code>的形式输出所有的参数 <code>$0</code>为执行文件名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// tesh.sh</div><div class="line"><span class="built_in">echo</span> <span class="string">"shell 传参："</span>;</div><div class="line"><span class="built_in">echo</span> <span class="string">"第一个参数为：<span class="variable">$1</span>"</span>;</div><div class="line"><span class="built_in">echo</span> <span class="string">"第二个参数为：<span class="variable">$2</span>"</span>;</div></pre></td></tr></table></figure>
+<p>执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh test.sh 1 2</div></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">shell 传参：</div><div class="line">第一个参数为：1</div><div class="line">第二个参数为：2</div></pre></td></tr></table></figure></p>
+<p>如果是变数量的参数：<br>可以使用<code>shift</code>操作；每次<code>shift</code>操作使得参数列表前移一个，即抛弃第一个，第二个成为第一个参数，<code>$#</code>减一，<code>$1</code>为之前没<code>shift</code>的<code>$2</code>;<br>和js里数组的<code>shift</code>操作很类似，每次shift一个数组，数组长度减一，同时前移一位；<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">count=1;</div><div class="line"><span class="keyword">while</span> [ <span class="variable">$#</span> != 0 ]; <span class="keyword">do</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"第<span class="variable">$count</span> 个参数为：<span class="variable">$1</span>"</span>;</div><div class="line">  <span class="built_in">let</span> count=count+1;</div><div class="line">  <span class="built_in">shift</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure></p>
+<p>执行结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">第1个参数为： hello</div><div class="line">第2个参数为： jack</div></pre></td></tr></table></figure></p>
+
       
 
       
@@ -189,11 +199,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">装饰器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
         		</li>
       		
 		</ul>
@@ -249,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/28/js装饰器的使用/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/09/11/shell-学习/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +269,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/29/java-lang-IllegalStateException-Current-state-RESET-new-state-FLUSHED/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java.lang.IllegalStateException: Current state = RESET, new state = FLUSHED
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/19/泛型的一个问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">泛型的一个问题</div>
+    <a href="/2017/09/11/h5-坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">h5 的各种坑</div>
       <i class="icon-circle-right"></i>
     </a>
   
