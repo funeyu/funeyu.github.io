@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="funer&#39;s blog">
 <meta property="og:description" content="Introducing loadable-components 介绍如果熟悉React的生态(Babel，Webpack，ES6…)，应该就会听过code split。Code split是说将你的代码分割成一个个的“块”，减少用户加载js bundle的大小。减小每个要加载的代码块可以使得加载运行都更快、Amazon 公司曾有句：“一秒就有16亿$的代价”。网页的性能是一项指标，不是一个漏洞需要">
 <meta property="og:image" content="http://yoursite.com/img/posts/loadableComponents.png">
-<meta property="og:updated_time" content="2017-09-19T07:31:11.000Z">
+<meta property="og:updated_time" content="2017-09-19T07:42:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="介绍loadable-components翻译">
 <meta name="twitter:description" content="Introducing loadable-components 介绍如果熟悉React的生态(Babel，Webpack，ES6…)，应该就会听过code split。Code split是说将你的代码分割成一个个的“块”，减少用户加载js bundle的大小。减小每个要加载的代码块可以使得加载运行都更快、Amazon 公司曾有句：“一秒就有16亿$的代价”。网页的性能是一项指标，不是一个漏洞需要">
@@ -208,7 +208,10 @@
 <li>Server端渲染，在React树遍历时收集模块；</li>
 <li>将这些模块id传给client，在渲染应用前就加载这些模块；</li>
 </ul>
-<p>很容易实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123;renderToString&#125; <span class="keyword">from</span> <span class="string">'react-dom/server'</span></div><div class="line"><span class="keyword">import</span> &#123;StaticRouter&#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> &#123;getLoadableState&#125; <span class="keyword">from</span> <span class="string">'loadable-components'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> app = (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">StaticRouter</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">StaticRouter</span>&gt;</span></div><div class="line">)</div><div class="line"></div><div class="line">getLoadableState(app).then(<span class="function"><span class="params">loadableState</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> html = renderToString(<span class="xml"><span class="tag">&lt;<span class="name">YourApp</span> /&gt;</span>)</span></div><div class="line"></div><div class="line">  const page = `</div><div class="line">    <span class="meta">&lt;!doctype html&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'main'</span>&gt;</span>$&#123;html&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line">  `</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>很容易实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123;renderToString&#125; <span class="keyword">from</span> <span class="string">'react-dom/server'</span></div><div class="line"><span class="keyword">import</span> &#123;StaticRouter&#125; <span class="keyword">from</span> <span class="string">'react-router'</span></div><div class="line"><span class="keyword">import</span> &#123;getLoadableState&#125; <span class="keyword">from</span> <span class="string">'loadable-components'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> app = (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">StaticRouter</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">App</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">StaticRouter</span>&gt;</span></div><div class="line">)</div><div class="line"></div><div class="line">getLoadableState(app).then(<span class="function"><span class="params">loadableState</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> html = renderToString(<span class="xml"><span class="tag">&lt;<span class="name">YourApp</span> /&gt;</span>)</span></div><div class="line"></div><div class="line">  const page = `</div><div class="line">    <span class="meta">&lt;!doctype html&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'main'</span>&gt;</span>$&#123;html&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        $&#123;loadableState.getScriptTag()&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line">  `</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>可以看到，在遍历React树时收集形成一个含有模块id的state。然后通过全局变量传给客户端。这个受styled-components的API<code>getScriptTag</code>和<code>getStyleElement</code>的启发。</p>
+<p>最后，client端，我们在渲染应用前必须加载state里有的组件；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> ReactDom <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123;BrowserRouter, Route&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></div><div class="line"><span class="keyword">import</span> loadable, &#123;loadComponents&#125; <span class="keyword">from</span> <span class="string">'loadable-components'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> Home = loadable(<span class="function"><span class="params">()</span>=&gt;</span> <span class="keyword">import</span>(<span class="string">'./Home'</span>))</div><div class="line"><span class="keyword">const</span> About = loadable(<span class="function"><span class="params">()</span>=&gt;</span> <span class="keyword">import</span>(<span class="string">'./About'</span>))</div><div class="line"><span class="keyword">const</span> Topics = loadable(<span class="function"><span class="params">()</span>=&gt;</span> <span class="keyword">import</span>(<span class="string">'./Topics'</span>))</div><div class="line"></div><div class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">  &lt;BrowserRouter&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;ul&gt;</div><div class="line">        &lt;li&gt;&lt;Link to="/"&gt;Home&lt;/Link&gt;&lt;/li&gt;</div><div class="line">        &lt;li&gt;&lt;Link to="/about"&gt;About&lt;/Link&gt;&lt;/li&gt;</div><div class="line">        &lt;li&gt;&lt;Link to="/topics"&gt;Topics&lt;/Link&gt;&lt;/li&gt;</div><div class="line">      &lt;/ul&gt;</div><div class="line"></div><div class="line">      &lt;hr /&gt;</div><div class="line"></div><div class="line">      &lt;Route exact path="/" component=&#123;Home&#125; /&gt;</div><div class="line">      &lt;Route path="/about" component=&#123;About&#125; /&gt;</div><div class="line">      &lt;Route path="/topics" component=&#123;Topics&#125; /&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/BrowserRouter&gt;</div><div class="line"></div><div class="line">loadComponents().then(() =&gt; &#123;</div><div class="line">  ReactDOM.render(&lt;App /&gt;, document.getElementById('main'))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
       
 
@@ -467,7 +470,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">babel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Module</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">span</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,19 +502,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">babel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Module</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">奇技淫巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,31 +514,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">span</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">h5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">坑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nosql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">玩具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">哈希索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,27 +538,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nosql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">玩具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">哈希索引</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">责任链</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,15 +566,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂烩</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">装饰器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">责任链</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">备忘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mongo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,7 +598,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mongo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,15 +626,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,11 +646,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
+                <a href="javascript:void(0)" class="js-tag color1">code split</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,7 +666,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">code split</a>
+                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,15 +674,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">截流函数</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
             
             <div class="clearfix"></div>
