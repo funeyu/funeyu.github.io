@@ -179,6 +179,14 @@
         <h2 id="junit的引入"><a href="#junit的引入" class="headerlink" title="junit的引入"></a>junit的引入</h2><p>通过<code>IntelliJ IDEA</code>创建<code>maven</code>项目；引入<code>pom</code>依赖；<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/junit/junit --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p><strong>注意点：</strong></p>
 <p>一定要将测试文件放在一起，比如<code>test</code>文件夹下，并且通过ide将该目录标识为<code>Test Sources Root</code>,不然在其他<code>java</code>目录建的测试代码不能引入<code>junit</code>,其只能在<code>Test Sources Root</code>里才能使用。</p>
+<h2 id="junit的使用"><a href="#junit的使用" class="headerlink" title="junit的使用"></a>junit的使用</h2><ol>
+<li><p><code>@Test</code>的使用：</p>
+<p>a:(expected=XXException.class)： 如果程序的异常和XXException.class一样，测试通过</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WorldTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span>(expected = MException.class)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSay</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> HException(<span class="string">"ja;fja;fj;a"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</div><div class="line"></div><div class="line">        HException(String msg) &#123;</div><div class="line">            <span class="keyword">super</span>(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</div><div class="line">        MException(String msg) &#123;</div><div class="line">            <span class="keyword">super</span>(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>b:(timeout = 毫秒数)：如果程序运行时间小于该毫秒数，则测试通过</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span>(timeout = <span class="number">10</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHello</span><span class="params">()</span></span>&#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
 
@@ -813,11 +821,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">es6</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -833,15 +841,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">bind</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">span</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,7 +853,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">bind</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">span</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -862,6 +870,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">坑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异常</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -877,11 +893,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">异常</a>
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -897,7 +909,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -906,10 +918,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -941,19 +949,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">配置</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mongo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">配置</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -973,11 +981,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -989,6 +997,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">code split</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">apply</a>
               </li>
              
@@ -997,23 +1017,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">z-index</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">诗歌</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">code split</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1029,11 +1037,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
