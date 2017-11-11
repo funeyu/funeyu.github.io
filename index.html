@@ -178,10 +178,9 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写自己的小项目，用到正则的<code>exec</code>，利用正则的<code>lastIndex</code>属性，遇到一个坑：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re = <span class="regexp">/^\s*\(/g</span>;</div><div class="line"></div><div class="line">re.exec(<span class="string">"()"</span>) <span class="comment">// 返回的是["(", index: 0, input: "()"]</span></div><div class="line"></div><div class="line"><span class="comment">// 这里是出错了, 返回的是null</span></div><div class="line">re.exec(<span class="string">"()"</span>)</div></pre></td></tr></table></figure>
-<p>上面其实是自己没有能够理解<code>re.exec</code>中<code>lastIndex</code>的含义，误以为，只是代表匹配一次的结束位置，只要每次执行<code>exec</code>就直接更新<code>lastIndex</code>,其实不是的。</p>
-<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p><code>lastIndex</code>其实是指下一个匹配的索引值，不是简单代表匹配一次的结束位置，其实也表示下一次开始的位置；<br>于是上面例子中的第二个匹配是从<code>()</code>的1索引值及<code>)</code>开始匹配，匹配为空；<br><code>lastIndex</code>在一个字符中多次执行<code>exec</code>是有用的；如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> script = <span class="regexp">/script,\s+/g</span>;</div><div class="line"><span class="keyword">var</span> test = <span class="string">'script,  script,    script'</span></div><div class="line"></div><div class="line">script.exec(test)</div><div class="line"><span class="built_in">console</span>.log(script.lastIndex) <span class="comment">// 9</span></div><div class="line"></div><div class="line">script.exec(test)</div><div class="line"><span class="built_in">console</span>.log(script.lastIndex) <span class="comment">// 20</span></div><div class="line">script.exec(test)</div><div class="line"><span class="built_in">console</span>.log(script.lastIndex) <span class="comment">// 0</span></div></pre></td></tr></table></figure></p>
-<p>要想达到一开始例子中的效果，可以每次都将<code>lastIndex = 0</code>，即<code>re.lastIndex=0</code>,这样子就使得匹配从字符的首字母开始匹配；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re = <span class="regexp">/^\s*\(/g</span>;</div><div class="line"></div><div class="line">re.exec(<span class="string">"()"</span>) <span class="comment">// 返回的是["(", index: 0, input: "()"]</span></div><div class="line"></div><div class="line">re.lastIndex = <span class="number">0</span>;</div><div class="line"></div><div class="line">re.exec(<span class="string">"(xxx)"</span>);</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/11/11/正则lastIndex/#more">more >></a>
+        
       
 
       
@@ -810,11 +809,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">es6</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -954,10 +953,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -967,6 +962,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">移动适配</a>
               </li>
              
               <li class="article-tag-list-item">
